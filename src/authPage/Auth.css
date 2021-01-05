@@ -40,3 +40,24 @@
 .input__submit:hover {
   background-color: #1c941c;
 }
+
+.form-switcher {
+  display: flex;
+  margin-top: 3rem;
+  justify-content: center;
+}
+
+.form-switcher__option {
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  cursor: pointer;
+}
+
+.form-switcher__option--selected {
+  color: #1c941c;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
