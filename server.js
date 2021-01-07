@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const authRoutes = require("./routes/authRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -11,6 +12,8 @@ app.enable("trust proxy");
 app.use(cors({ origin: "*" }));
 
 app.use(bodyParser.json());
+
+app.use("/api/v1/auth", authRoutes);
 
 const port = process.env.PORT || 5000;
 

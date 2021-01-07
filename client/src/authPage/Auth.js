@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Logoipsum from "../img/logo.svg";
+import API from "../utils/API";
 
 const Auth = () => {
   const [register, setRegister] = useState(false);
@@ -8,7 +9,17 @@ const Auth = () => {
     password: "",
   });
 
-  console.log(formData);
+  //API Calls
+  const signupUser = async (email, password) => {
+    try {
+      const config = { headers: { "Content-Type": "application/json" } };
+      const body = { email, password };
+      const res = await API.post("api/v1/auth/signup", body, config);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const { email, password } = formData;
 
@@ -18,6 +29,7 @@ const Auth = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    signupUser(email, password);
     console.log("Button Clicked!!!");
   };
 
