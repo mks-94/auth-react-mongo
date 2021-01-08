@@ -18,6 +18,19 @@ const Auth = () => {
       console.log(res);
     } catch (err) {
       console.log(err);
+      console.log(err.message);
+    }
+  };
+
+  const loginUser = async (email, password) => {
+    try {
+      const config = { headers: { "Content-Type": "application/json" } };
+      const body = { email, password };
+      const res = await API.post("api/v1/auth/login", body, config);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      console.log(err.message);
     }
   };
 
@@ -29,7 +42,8 @@ const Auth = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    signupUser(email, password);
+    if (register) signupUser(email, password);
+    else loginUser(email, password);
     console.log("Button Clicked!!!");
   };
 

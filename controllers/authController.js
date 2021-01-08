@@ -45,3 +45,15 @@ exports.signup = async (req, res) => {
   }
   console.log("SIGNUP HIT");
 };
+
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email }).select("+password");
+    await bcrypt.compare(password, user.password);
+    sendToken(user, 200, req, res);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err.message);
+  }
+};
